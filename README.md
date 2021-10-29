@@ -1,13 +1,13 @@
 # [Research_Track_1](https://unige.it/en/off.f/2021/ins/51201.html?codcla=10635) , [Robotics Engineering](https://courses.unige.it/10635) ([UNIGE](https://unige.it/it/)) : First assignement.
 ## Python Robotics Simulator.
-### Professor. [Carmine Ricchiuto](https://github.com/CarmineD8).
+### Professor. [Carmine Recchiuto](https://github.com/CarmineD8).
 
 -----------------------
 
 Project objectives
 --------------------
 
-The aim of this project was to code a Python script <code><img height="20" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/python.png"></code> capable of making holonomic robot ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/robot.png) behave correctly inside of a given environment. 
+The aim of this project was to code a Python script <code><img height="20" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/python.png"></code> capable of making holonomic robot <img height="30" width = "30" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/robot.png"> behave correctly inside of a given environment. 
 Thanks to the simulator we used for the assignement (developed by [Student Robotics](https://studentrobotics.org)), the robot will spawn inside of an arena composed of squared tokens of two different colors:
 * The **gold tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token.png) rappresent the wall of the maze the robot had to navigate in. 
 * The **silver tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token_silver.png) rappresent the objects the robot has to interact with.
@@ -57,7 +57,6 @@ Robot API
 The API for controlling a simulated robot is designed to be as similar as possible to the [SR API][sr-api].
 
 ### Motors ###
-
 
 
 The simulated robot has two motors configured for skid steering, connected to a two-output [Motor Board](https://studentrobotics.org/docs/kit/motor_board). The left motor is connected to output `0` and the right motor to output `1`.
