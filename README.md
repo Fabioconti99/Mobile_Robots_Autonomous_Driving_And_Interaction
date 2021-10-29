@@ -97,18 +97,18 @@ def drive(speed, seconds):
     R.motors[0].m1.power = 0
 ```
 
-#### `turn(speed , seconds)`
+* #### `turn(speed , seconds)`
 
 The function `turn(_,_)` sets an angular velocity to the robot resulting into a rotation around the y axis (perpendicular to the map). In order to achive this behaveour, the function makes the robot's motors run at opposit speed for certain amount of time. 
 
-**Arguments**:
+ **Arguments**:
 
-* *speed*: rappresents the module of the speed at which the wheels will spin. In order to make the robot spin around its own vertical axis, the velocity of the spin assigned to the right wheel is opposit to the velocity of the left one. If the ***speed*** argument is **positive** the rotation will be counter-clockwise. Given a **negative *speed***, the robot will rotate **clockwise**.
-* *second*: rappresents the time interval in seconds [*s*] during which the wheels will spin.
+ * *speed*: rappresents the module of the speed at which the wheels will spin. In order to make the robot spin around its own vertical axis, the velocity of the spin assigned to the right wheel is opposit to the velocity of the left one. If the ***speed*** argument is **positive** the rotation will be counter-clockwise. Given a **negative *speed***, the robot will rotate **clockwise**.
+ * *second*: rappresents the time interval in seconds [*s*] during which the wheels will spin.
 
-**Returns**:
+ **Returns**:
 
-* *NONE*
+ * *NONE*
 
 **function**:
 
@@ -140,28 +140,29 @@ Cable-tie flails are not implemented.
 
 #### Functions which use these elements ####
 
+* #### `grab_routine()`
 The function `grab_routine()` is used throught out the code to pick up the **silver tokens** and placeing it right behind tajectory of the robot. 
 What the function does is: 
 
-* letting the robot grab the object right infront it, 
-* moveing it right behind itself, 
-* releasing it, 
-* backing up a bit, 
-* turning back to the original trajectory,
-* and keep moveing forward. 
+ * letting the robot grab the object right infront it, 
+ * moveing it right behind itself, 
+ * releasing it, 
+ * backing up a bit, 
+ * turning back to the original trajectory,
+ * and keep moveing forward. 
 
 `grab_routine()`  is called inside the main function only when the robot is very close to a silver token. The control on the relative distance between the robot and the token makes the robot always grab the object avoiding mistaks during the use of the `grab()` function.
 
 
-**Arguments**:
+ **Arguments**:
 
-* *NONE*
+ * *NONE*
 
-**Returns**:
+ **Returns**:
 
-* *NONE*
+ * *NONE*
 
-**function**:
+ **function**:
 
 ```python
 def grab_routine():
