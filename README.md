@@ -9,7 +9,7 @@ Project objectives
 
 The aim of this project was to code a Python script <code><img height="20" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/python.png"></code> capable of making holonomic robot ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/robot.png) behave correctly inside of a given environment. 
 Thanks to the simulator we used for the assignement (developed by [Student Robotics](https://studentrobotics.org)), the robot will spawn inside of an arena composed of squared tokens of two different colors:
-* The **gold tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token_gold.png) rappresent the wall of the maze the robot had to navigate in. 
+* The **gold tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token.png) rappresent the wall of the maze the robot had to navigate in. 
 * The **silver tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token_silver.png) rappresent the objects the robot has to interact with.
 
 The behavior of the robot has to stand by the following rules:
