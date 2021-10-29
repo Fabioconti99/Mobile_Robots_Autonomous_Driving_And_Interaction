@@ -75,6 +75,7 @@ This element is mainly used inside the code to make the robot drive straght (`dr
 * #### `drive(speed , seconds)`
     
     The function `drive(_,_)` sets a linear velocity to the robot resulting into a straight shifting. In order to achive this behaveour, the function makes the robot's motors run at the same speed for certain amount of time. 
+    
     **Arguments**:
     
     * *speed*: rappresents the speed at which the wheels will spin. The velocity of the spin assigned to the wheels is settable within the interval *-100<speed<100*. 
@@ -99,6 +100,7 @@ def drive(speed, seconds):
 #### `turn(speed , seconds)`
 
 The function `turn(_,_)` sets an angular velocity to the robot resulting into a rotation around the y axis (perpendicular to the map). In order to achive this behaveour, the function makes the robot's motors run at opposit speed for certain amount of time. 
+
 **Arguments**:
 
 * *speed*: rappresents the module of the speed at which the wheels will spin. In order to make the robot spin around its own vertical axis, the velocity of the spin assigned to the right wheel is opposit to the velocity of the left one. If the ***speed*** argument is **positive** the rotation will be counter-clockwise. Given a **negative *speed***, the robot will rotate **clockwise**.
@@ -171,7 +173,7 @@ def grab_routine():
     turn(-40,1.90)
 ```
 The following **gif** rappresents the behavior of the robot once the function is called in the main function:
-<img height="100" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/grab.gif">
+<img height="500" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/grab.gif">
 
 -------------------
 ### Vision ###
@@ -215,5 +217,5 @@ for m in markers:
 
 Conclusions and results
 -----------
-This project was my first approach to the Python programming language and to the developing a well structured git repository. Thanks to it, I gained some knowledge about to the basic concepts of Python such as creating variables, managing functions, and delivering clear and well structured code that could be easily understood by other developers. 
+This project was my first approach to the Python programming language and to the developing of a well structured git repository. Thanks to it, I gained knowledge about to the basic concepts of Python such as creating variables, managing functions, and delivering clear and well structured code that could easily be understood by other developers. 
 
