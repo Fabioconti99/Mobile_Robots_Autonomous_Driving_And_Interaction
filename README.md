@@ -7,10 +7,10 @@
 Project objectives
 --------------------
 
-The aim of this project was to code a Python script <code><img height="20" src="https://github.com/Fabioconti99/my_Research_Track/blob/main/images/python.png"></code> capable of making holonomic robot ![alt text](https://github.com/Fabioconti99/my_Research_Track/blob/main/sr/robot.png) behave correctly inside of a given environment. 
+The aim of this project was to code a Python script <code><img height="20" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/python.png"></code> capable of making holonomic robot ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/robot.png) behave correctly inside of a given environment. 
 Thanks to the simulator we used for the assignement (developed by [Student Robotics](https://studentrobotics.org)), the robot will spawn inside of an arena composed of squared tokens of two different colors:
-* The **gold tokens** ![alt text](https://github.com/Fabioconti99/my_Research_Track/blob/main/sr/token_gold.png) rappresent the wall of the maze the robot had to navigate in. 
-* The **silver tokens** ![alt text](https://github.com/Fabioconti99/my_Research_Track/blob/main/sr/token_silver.png) rappresent the objects the robot has to interact with.
+* The **gold tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token_gold.png) rappresent the wall of the maze the robot had to navigate in. 
+* The **silver tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token_silver.png) rappresent the objects the robot has to interact with.
 
 The behavior of the robot has to stand by the following rules:
 * constantly driving the robot around the environment in the counter-clockwise direction,
@@ -18,7 +18,7 @@ The behavior of the robot has to stand by the following rules:
 * And once the robot will get close enough to a silver token placed inside the environment, grabbing it and moves it behind itself.
 
 Picture of the **Enviroment**:
-![alt text](https://github.com/Fabioconti99/my_Research_Track/blob/main/images/arena.png) 
+![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/arena.png) 
 
 With everything working correctely, the robot should lap around the circuit avoiding the gold tokens and grabbing the silver ones on an infinite loop.
 
