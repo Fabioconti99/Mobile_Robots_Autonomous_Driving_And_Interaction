@@ -77,7 +77,6 @@ This element is mainly used inside the code to make the robot drive straght (`dr
     The function `drive(_,_)` sets a linear velocity to the robot resulting into a straight shifting. In order to achive this behaveour, the function makes the robot's motors run at the same speed for certain amount of time. 
     
     **Arguments**:
-    
     * *speed*: rappresents the speed at which the wheels will spin. The velocity of the spin assigned to the wheels is settable within the interval *-100<speed<100*. 
     * *second*: rappresents the time interval in seconds [*s*] during which the wheels will spin.
     
@@ -179,13 +178,13 @@ To help the robot find tokens and navigate, each token has markers stuck to it, 
 Each `Marker` object has the following attributes:
 
 * `info`: a `MarkerInfo` object describing the marker itself. Has the following attributes:
-* `code`: the numeric code of the marker.
-* `marker_type`: the type of object the marker is attached to (either `MARKER_TOKEN_GOLD`, `MARKER_TOKEN_SILVER` or `MARKER_ARENA`).
-* `offset`: offset of the numeric code of the marker from the lowest numbered marker of its type. For example, token number 3 has the code 43, but offset 3.
-* `size`: the size that the marker would be in the real game, for compatibility with the SR API.
+    * `code`: the numeric code of the marker.
+    * `marker_type`: the type of object the marker is attached to (either `MARKER_TOKEN_GOLD`, `MARKER_TOKEN_SILVER` or `MARKER_ARENA`).
+    * `offset`: offset of the numeric code of the marker from the lowest numbered marker of its type. For example, token number 3 has the code 43, but offset 3.
+    * `size`: the size that the marker would be in the real game, for compatibility with the SR API.
 * `centre`: the location of the marker in polar coordinates, as a `PolarCoord` object. Has the following attributes:
-* `length`: the distance from the centre of the robot to the object (in metres).
-* `rot_y`: rotation about the Y axis in degrees.
+    * `length`: the distance from the centre of the robot to the object (in metres).
+    * `rot_y`: rotation about the Y axis in degrees.
 * `dist`: an alias for `centre.length`
 * `res`: the value of the `res` parameter of `R.see`, for compatibility with the SR API.
 * `rot_y`: an alias for `centre.rot_y`
@@ -231,6 +230,7 @@ In this case there are no constraints about where and what the robot has to look
 In order to get the Data about the position of **closest silver token** within a determined area we have to take all the attributes returned by the `R.see()` method and filter them. 
 Using only the `marker_type`, `length`, and `rot_y` attributes we can define the detecting area within which  `find_silver_token()` will look for the closest silver token. 
 Following the same concept of the previously shown cicle, our function will have to compute the same control on the distance between the tokens and the robot but with extra constrains. These limitations will prevent the cicle to concider tokens of different type other than silver and tokens located outside the detecting region. 
+
 **Arguments**:
 * *NONE*
 
@@ -293,16 +293,23 @@ def find_golden_token(th):
  **The function**:
 
 ```python
-def gold_token_list(d_s,d_g):
-
+def gold_token_list(d_s,rot_s):
     if ( d_s==-1):
         print("no silver")
         return True
     else:
-        if (d_s>d_g and d_g!=-1):
+        dist=2
+        for token in R.see():
+            if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and rot_s-30 < token.rot_y < rot_s+30:
+                   dist=token.dist
+            rot_y=token.rot_y
+        if dist==2:
+            print("no gold")
+            return False
+        elif (d_s>dist):
             print("gold closer than silver")
             return True
-        elif (d_s<=d_g):
+        elif (d_s<=dist):
             print("silver closer than gold")
             return False
 ```
@@ -335,6 +342,7 @@ def turns():
         turn(25,0.1)
 ```
 The following gif shows how the robot behaves calling this function:
+
 <img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns.gif">
 
 * #### `silver_routine(rot_y_silver,a_th)`
@@ -370,7 +378,7 @@ The `main()` function consists of a while loop which at every cycle updates the 
 
 ### flowchart of the `main()` function
 
-<img height="500" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/flow.png">
+<img height="500" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/flow.png">
 
 ### Explenation of the different sections of the flow chart:
 
@@ -433,11 +441,14 @@ Conclusions and results
 -----------
 ### Video of the robot's performance
 This video shows a speeded ap version of the perfromance of the robot during its first lap of the arena: 
-<img height="400" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/the_whole_run.mp4">
+//<img height="400" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/the_whole_run.mp4">
 
 ### Possible improvements
 During the developing of the code i came up with a few ideas that could make the robot work smoother through out the entire run:
-* With the implementation I came up with so far, the robot points the silver tokens with in a little range. A future accomplishment for the project would be being able to view the silver tokens from a way farther distance. This improvement would make the robot start the approach routine earlier making the process of driveing towards the tokens way faster. 
-* Another way to improve the proformance of the robot would be 
-This project was my first approach to the Python programming language and to the developing of a well structured git repository. Thanks to it, I gained knowledge about to the basic concepts of Python such as creating variables, managing functions, and delivering clear and well structured code that could easily be understood by other developers. I also learnd new skills about the use of [Git](https://git-scm.com) as a distributed control system which I had never worked with.
+* With the implementation I came up with so far, the robot points the silver tokens with in a little range. A future accomplishment for the project would be being able to view the silver tokens from a way farther distance. This improvement would make the robot start the approach routine earlier making the process of driveing towards the tokens way faster. Such result can be achived 
+
+* Another way to improve the ability of the robot to approach silver tokens may be using the `code` atribute. This is one of the atributes of the object type `Marker`. Through this numeric token's identification, the robot could save the `code` of every single grabbed token and not viewing it as a grabbable object anymore. This type of control could let the robot have a 360° degrees view of its surroundings. Letting a wider field of view will help the robot identifing tokens from every possible angle makeing it easier to identifying and point the following token.
+    I've already tried to implement a function capable of recongnizeing the code of the silver token without achiveing any decent result. The thing I noticed working on this feature is that many times the latest approached token's code would not get saved inside the dedicated variable makeing it impossible for the robot to not detect it after the grabbing routine. With an improved code saveing method this routine could have been an efficent way of avoiding already grabbed silver tokens. 
+
+This project was my first approach to the Python programming language and to the developing of a well structured git repository. Thanks to it, I gained knowledge about to the basic concepts of Python such as creating variables, managing functions, and delivering clear and well structured code that could easily be understood by other developers. I also learnd new skills about the use of [Git](https://git-scm.com) as a distributed control system which I had never worked with before.
 

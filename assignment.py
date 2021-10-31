@@ -70,11 +70,11 @@ def find_silver_token():
     dist (float): distance of the closest gold token (-1 if no silver token is detected in a 2 units radius in front of it)
     rot_y (float): angle between the robot and the closest gold token (-1 if no silver token is detected in a 2 units radius in front of it)
 """
-def find_golden_token(th):
+def find_golden_token():
 
     dist=2
     for token in R.see():
-        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -th < token.rot_y < th:
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -60 < token.rot_y < 60:
             dist=token.dist
         rot_y=token.rot_y
     if dist==2:
@@ -89,22 +89,29 @@ def find_golden_token(th):
 
     Args:
     d_s (float): distance of the closest silver token (-1 if no silver token is detected in a 2 units radius in front of it)
-    d_g (float): distance of the closest gold token (-1 if no silver token is detected in a 2 units radius in front of it)
+    rot_s (float): relative angle between the closest silver token and the robot (-1 if no silver token is detected in a 2 units radius in front of it)
             
     Returns:
     True: if no silver is found in a 2 units angle in front of the robot or a gold token is closer to the robot than a silver is
     False: if the silver token is closer to the robot than any of the golden ones
 """
-def gold_token_list(d_s,d_g):
-
+def gold_token_list(d_s,rot_s):
     if ( d_s==-1):
         print("no silver")
         return True
     else:
-        if (d_s>d_g and d_g!=-1):
+        dist=2
+        for token in R.see():
+            if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and rot_s-30 < token.rot_y < rot_s+30:
+                   dist=token.dist
+            rot_y=token.rot_y
+        if dist==2:
+            print("no gold")
+            return False
+        elif (d_s>dist):
             print("gold closer than silver")
             return True
-        elif (d_s<=d_g):
+        elif (d_s<=dist):
             print("silver closer than gold")
             return False
 
@@ -130,10 +137,9 @@ def turns():
         print("err")
     if rot_y>=0:
         turn(-25,0.1)
-        drive(10,0.05)
     else:
         turn(25,0.1)
-        drive(10,0.05)
+        
 #########################################
 """
     GRAB_ROUTINE
@@ -160,17 +166,15 @@ def grab_routine():
     the robot will adjust the angle to the angle of the token and drive to it until it will reach the distance thrashold in order to grab it
     
 """
-def silver_routine(rot_y_silver,a_th):
+def silver_routine(rot_y_silver,a_th=2):
 
     if rot_y_silver < -a_th:
         print ("turn neg")
         turn(-15, 0.1)
-        #drive(10,0.1)
                         
     if rot_y_silver > a_th:
         print ("turn pos")
         turn(+15, 0.1)
-        #drive(10,0.1)
         
     if(-a_th<rot_y_silver<a_th ):
         print ("straight")
@@ -185,25 +189,21 @@ def main():
     d_th_silver = 0.4
     #Threshold to grab the silver token
     
-    a_th = 2
-    #Treshold for the angle within whitch the robot has to be in order to go grab the silver token
-    
     drive(100,3)
     #Moveing the robot straight towards the first token in order to initialize the direction of the movement of the robot counter clockwise
 
     while (1):
     
         d_silver , rot_y_silver = find_silver_token()
-        d_gold, rot_y_gold= find_golden_token(60)
-        d_gold2, rot_y_gold2= find_golden_token(45)
-        gold = gold_token_list(d_silver, d_gold2)
+        d_gold, rot_y_gold= find_golden_token()
+        gold = gold_token_list(d_silver, rot_y_silver)
         
         if(gold):
             
             if (d_gold!=-1 and d_gold<0.7):
              #If the robot gets close to a gold
-                 print("turns")
-                turns()
+                 #print("turns")
+                 turns()
             
             else:
              #If the robot doesen't see neither the silver nor the gold token
@@ -214,16 +214,16 @@ def main():
         else:
          #If the robot sees a silver token
 
-            print (rot_y_silver)
-            silver_routine(rot_y_silver,a_th)
+            #print (rot_y_silver)
+            silver_routine(rot_y_silver)
             #Aproach to the siver token
 
                 
             if d_silver < d_th_silver:
             #The robot is within the treashold and it will operate the grab routine
 
-                print ("grab")
+                #print ("grab")
                 grab_routine()
-                    
+                #the robot grabs the silver token and puts it behind itself
     
 main()
