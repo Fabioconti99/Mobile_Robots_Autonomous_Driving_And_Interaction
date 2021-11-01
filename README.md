@@ -393,7 +393,7 @@ The `main()` function consists of a while-loop that updates data regarding the r
 ### flowchart of the `main()` function
 
 <p align="center">
-<img height="700" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/flow.png">
+<img height="1000" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/flow.png">
 </p>
 
 ### Explenation of the different sections of the flow chart:
