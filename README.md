@@ -454,8 +454,7 @@ Conclusions and results
 This video shows a speeded up version of the perfromance of the robot during its first lap of the arena: 
 
 
-
-https://user-images.githubusercontent.com/91262561/139698142-a46bb122-2eba-4d2a-85a1-79e39cb39a3b.mp4
+https://user-images.githubusercontent.com/91262561/139699494-1ea55888-eb89-4668-a06d-8f3775f41092.mp4
 
 
 
