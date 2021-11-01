@@ -9,9 +9,9 @@ Project objectives
 
 The aim of this project was to code a Python script <code><img height="20" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/python.png"></code> capable of making an holonomic robot <img height="25" width = "25" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/robot.png"> behave correctly inside of a given environment.
 
-Thanks to the simulator we used for the assignement (developed by [Student Robotics](https://studentrobotics.org)), the robot will spawn inside of an arena composed of squared tokens of two different colors:
-* The **gold tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token.png) rappresent the wall of the maze the robot had to navigate in. 
-* The **silver tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token_silver.png) rappresent the objects the robot has to interact with.
+Thanks to the simulator we used for the assignment (developed by [Student Robotics](https://studentrobotics.org)), the robot will spawn inside of an arena composed of squared tokens of two different colors:
+* The **gold tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token.png) represent the wall of the maze the robot had to navigate in. 
+* The **silver tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token_silver.png) represent the objects the robot has to interact with.
 
 The behavior of the robot has to stand by the following rules:
 * constantly driving the robot around the environment in the counter-clockwise direction,
@@ -21,7 +21,7 @@ The behavior of the robot has to stand by the following rules:
 Picture of the **Enviroment**:
 ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/arena.png) 
 
-With everything working correctely, the robot should lap around the circuit avoiding the gold tokens and grabbing the silver ones on an infinite loop.
+With everything working correctly, the robot should lap around the circuit avoiding the gold tokens and grabbing the silver ones on an infinite loop.
 
 
 Installing and running
@@ -33,7 +33,7 @@ Pygame, unfortunately, can be tricky (though [not impossible](http://askubuntu.c
 
 ## Running the script
 
-To run one or more scripts in the simulator, use `run.py`, passing it the file names. 
+To run one or more scripts in the simulator use `run.py`, passing it the file names. 
 
 ```bash
 $ python run.py assignment.py
@@ -70,15 +70,15 @@ R.motors[0].m1.power = -25
 
 #### Functions which use this element ####
 
-This element is mainly used inside the code to make the robot drive straght (`drive(speed , seconds)`) and turn around the vertical axis (`turn(speed , seconds)`).
+This element is mainly used inside the code to make the robot drive straight (`drive(speed, seconds)`) and turn around the vertical axis (`turn(speed, seconds)`).
 
 * #### `drive(speed , seconds)`
     
-    The function `drive(_,_)` sets a linear velocity to the robot resulting into a straight shifting. In order to achive this behaveour, the function makes the robot's motors run at the same speed for certain amount of time. 
+    The function `drive(_,_)` sets a linear velocity to the robot resulting in a straight shifting. To do so, it makes the robot's motors run at the same speed for a certain amount of time. 
     
     **Arguments**:
-    * *speed*: rappresents the speed at which the wheels will spin. The velocity of the spin assigned to the wheels is settable within the interval *-100<speed<100*. 
-    * *second*: rappresents the time interval in seconds [*s*] during which the wheels will spin.
+    * *speed*: represents the speed at which the wheels will spin. The velocity of the spin assigned to the wheels is settable within the interval *-100<speed<100*. 
+    * *second*: represents the time interval in seconds [*s*] during which the wheels will spin.
     
     **Returns**:
     
@@ -98,11 +98,11 @@ def drive(speed, seconds):
 
 * #### `turn(speed , seconds)`
 
-    The function `turn(_,_)` sets an angular velocity to the robot resulting into a rotation around the y axis (perpendicular to the map). In order to achive this behaveour, the function makes the robot's motors run at opposit speed for certain amount of time. 
+    The function turn(_,_) sets an angular velocity to the robot resulting in a rotation around the y axis (perpendicular to the map). To achieve this behavior, the function makes the robot's motors run at an opposite speed for a certain amount of time. 
 
     **Arguments**:
-    * *speed*: rappresents the module of the speed at which the wheels will spin. In order to make the robot spin around its own vertical axis, the velocity of the spin assigned to the right wheel is opposit to the velocity of the left one. If the ***speed*** argument is **positive** the rotation will be counter-clockwise. Given a **negative *speed***, the robot will rotate **clockwise**.
-    * *second*: rappresents the time interval in seconds [*s*] during which the wheels will spin.
+    * *speed*: represents the module of the speed at which the wheels will spin. To make the robot spin around its vertical axis, the velocity of the spin assigned to the right wheel is opposite to the velocity of the left one. If the ***speed*** argument is **positive** the rotation will be counter-clockwise. Given a **negative *speed***, the robot will rotate **clockwise**.
+    * *second*: represents the time interval in seconds [*s*] during which the wheels will spin.
     
     **Returns**:
     * *NONE*
@@ -135,20 +135,21 @@ To drop the token, call the `R.release` method.
 
 Cable-tie flails are not implemented.
 
+
 #### Functions which use these elements ####
 
 * #### `grab_routine()`
-    The function `grab_routine()` is used throught out the code to pick up **silver tokens** and placeing them right behind tajectory of the robot. 
-    What the function does is: 
+    The function `grab_routine()` is used throughout the code to pick up **silver tokens** and place them right behind the trajectory of the robot. 
+     What the function does is: 
 
-     * letting the robot grab the object right infront it, 
-     * moveing it right behind itself, 
-     * releasing it, 
-     * backing up a bit in oder to not hit the token, 
-     * turning back to the original trajectory,
-     * and keep moveing forward. 
-     
-     `grab_routine()`  is called inside the main function only when the robot is very close to a silver token. The control on the relative distance between the robot and the token makes the robot always grab the object avoiding mistaks during the use of the `grab()` function.
+   * letting the robot grab the object right in front of it, 
+   * moving it right behind itself, 
+   * releasing it, 
+   * backing up a bit in order to not hit the token, 
+   * turning back to the original trajectory,
+   * and keep moving forward. 
+  
+  `grab_routine()` is called inside the main function only when the robot is very close to a silver token. The control on the relative distance between the robot and the token makes the robot always grab the object avoiding mistakes during the use of the `grab()` function.
 
     **Arguments**:
     * *NONE*
@@ -167,13 +168,16 @@ def grab_routine():
     drive(-25,1)
     turn(-40,1.90)
 ```
-The following **gif** rappresents the behavior of the robot once the function is called in the main function:
+The following **gif** represents the behavior of the robot once the function is called in the `main()` function:
+
+<p align="center">
 <img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/grab.gif">
+</p>
 
 -------------------
 ### Vision ###
 
-To help the robot find tokens and navigate, each token has markers stuck to it, as does each wall. The `R.see` method returns a list of all the markers the robot can see, as `Marker` objects. The robot can only see markers which it is facing towards.
+To help the robot find tokens and navigate, each token has markers stuck to it, as does each wall. The `R.see()` method returns a list of all the markers the robot can see, as `Marker` objects. The robot can only see markers which it is facing towards.
 
 Each `Marker` object has the following attributes:
 
@@ -208,12 +212,12 @@ for m in markers:
 
 #### Functions which use this element ####
 
-The `R.see` method is used in the code as a way of makeing the robot aware of its surroundings. Thanks to the Data provided by this method, the robot will be able to move inside the enviroment according to the tasks it has to accomplish. 
+The `R.see` method is used in the code for making the robot aware of its surroundings. Thanks to the Data provided by this method, the robot will be able to move inside the environment according to the tasks it has to accomplish. 
 
 
 * #### `find_silver_token()`
     This function will detect the closest silver token to the center of the robot within a defined area in front of it.
-    In the following example we can se how to cicle all the Data contained in the `R.see()` until we find the closest token to the robot:
+    In the following example, we can see how to cycle all the Data contained in the `R.see()` until we find the closest token to the robot:
 ```python
 def find_token():
     dist=100
@@ -226,16 +230,16 @@ def find_token():
     else:
        return dist, rot_y 
 ```
-In this case there are no constraints about where and what the robot has to look for. 
-In order to get the Data about the position of **closest silver token** within a determined area we have to take all the attributes returned by the `R.see()` method and filter them. 
-Using only the `marker_type`, `length`, and `rot_y` attributes we can define the detecting area within which  `find_silver_token()` will look for the closest silver token. 
-Following the same concept of the previously shown cicle, our function will have to compute the same control on the distance between the tokens and the robot but with extra constrains. These limitations will prevent the cicle to concider tokens of different type other than silver and tokens located outside the detecting region. 
+In this case, there are no constraints about where and what the robot has to check. 
+To get the Data about the position of the **closest silver token** within a determined area we have to take all the attributes returned by the `R.see()` method and filter them. 
+Using only the `marker_type`, `length`, and `rot_y` attributes we can define the detecting area within which `find_silver_token()` will look for the closest silver token. 
+Following the same concept of the previously shown cycle, our function will have to compute the same control on the distance between the tokens and the robot but with extra constraints. These limitations will prevent the cycle from considering tokens of different types other than silver and tokens located outside the detecting region. 
 
 **Arguments**:
 * *NONE*
 
 **Returns**:
-* If a silver token is detected inside the detecting area, the function will return the **robot's relative distance from the token** ad its **relative angle**. If the token is not detected, the function will return -1 for both relative distace and relative angle.
+* If a silver token is detected inside the detecting area, the function will return the **robot's relative distance from the token** ad its **relative angle**. If the token is not detected, the function will return -1 for both relative distance and relative angle.
 
  **The function**:
 
@@ -254,13 +258,13 @@ def find_silver_token():
            return dist, rot_y
 ```
 
-With these new restrictions applied, the detecting area will assume a fraction circle shape 90 degrees wide and 2 units deep right in front of the robot. 
+With these new restrictions, the detecting area will assume a fraction circle shape 90° degrees wide and 2 units deep right in front of the robot. 
 The following picture shows how the detecting area looks like:
 
 
-* #### `find_golden_token(angle)`
-This function works in a similar way of  `find_silver_token()` but for gold tokens.
-Thanks to this function the robot will be able to detect the closest gold token to the center of the robot within a defined area. The main difference that distingush its behavior to the `find_silver_token()` is the fact that `find_golden_token(angle)` has an input **argument** which tels the function how wide the circle fraction of the detecting area has to be. 
+* #### `find_golden_token()`
+This function works in a similar way to `find_silver_token()` but for gold tokens.
+Thanks to this function, the robot will detect the closest gold token to the center of the robot within a defined area. The main difference between `find_silver_token()` and `find_golden_token()` is the wider detecting area of 120° degrees compared to the 90° degrees of the other one. 
 
 **The function**:
 
@@ -278,16 +282,16 @@ def find_golden_token(th):
            return dist, rot_y
 ```
 
-* #### `gold_token_list(d_s,d_g)`
+* #### `gold_token_list(d_s,rot_s)`
 
-    This function tells the robot if the silver token detected by the function `find_silver_token()` is the closest token overall. 
+    `gold_token_list(d_s,rot_s)` checks if the silver token detected by the function `find_silver_token()` is the closest one inside of a 60° degrees window centered around the detected silver token.
     
     **Arguments**:
-    * *d_s*: Distance of the closest silver token
-    * *d_g*: Distance of the closest gold token
+    * *d_s*: distance of the closest silver token.
+    * *rot_s*: relative angle between the robot and the closest silver token.
     
     **Returns**:
-    * *True*: the function returns true if there is a golden token inside the detecting area closer to robot than a silver one is. It also returns true if no silver tokens are detected.
+    * *True*: the function returns true if there is a golden token inside the detecting area closer to the robot than a silver one is. It also returns true if no silver tokens are detected.
     * *False*: the function will return false if the closest token detected by the robot is silver. 
 
  **The function**:
@@ -316,8 +320,8 @@ def gold_token_list(d_s,rot_s):
 
 * #### `turns()`
 
-    The function `turns()` has the role of makeing the robot turn towards the opposit direction of the closest wall of gold tokens. Thanks to this function the robot will never hit the walls of the maze and will keep driveing towards the counter-clockwise direction. 
-    This function is only called once the robot gets close to a gold wall. When it does thanks to the `R.see()` method, the function will check with a scan on the left and right side of the robot where the closest gold token is. if the relative angle between the token and the robot is negative it means that the closest token is on the left side of the robot. This value will trigger a right turn of the robot until it doesen't detect any other gold tokens infront of itself. At that point it will stop turning and it will continue driveing forward. The opposit thing will happen if the detection of the closest gold token returns a positive value. 
+    The function `turns()` has the role of making the robot turn towards the opposite direction of the closest wall of gold tokens. Thanks to it, the robot will never hit the walls of the maze and will keep driving in the counter-clockwise direction. 
+    This function gets called only once the robot gets close to a gold wall. When it does, it will check with a scan on the left and right side of the robot where the closest gold token is. If the relative angle between the token and the robot is negative, the closest token will be on the left side of the robot. This value will trigger a right turn of the robot until it doesn't detect any other gold tokens in front of itself. At that point, it will stop turning and will continue driving forward. The opposite thing will happen if the detection of the closest gold token returns a positive value. 
     
     **Arguments**:
     * *NONE*
@@ -343,11 +347,13 @@ def turns():
 ```
 The following gif shows how the robot behaves calling this function:
 
+<p align="center">
 <img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns.gif">
+</p>
 
-* #### `silver_routine(rot_y_silver,a_th)`
+* #### `silver_routine(rot_y_silver,a_th=2)`
     
-    The function `silver_routine(rot_y_silver,a_th)` uses the threshold initialised at the beginning of the main function to create a routine capable of approaching the detected silver tokens. The function will loop until the relative angle between the robot and the silver token will be contained in an angular window defined by the set threshold. Once this condition is met the robot will start driving towards the silver token.
+    The function `silver_routine(rot_y_silver,a_th)` doesen't directly uses the `R.see()` method but it's compleatly. However, The way the function works expliots the data coming from it. It uses the threshold initialized at the beginning of the `main` function to create a routine capable of approaching the detected silver tokens. The function will loop until the relative angle between the robot and the silver token settles in an angular window defined by the set threshold. Once this condition is taken care of, the robot will start driving towards the detected token.
     **Arguments**:
     * *rot_y_silver*: relative angle between the detected silver token and the robot
     * *a_th*: threashold within witch the robot will have to mantain its relative angle between itself and the detected silver token. 
@@ -370,42 +376,50 @@ def silver_routine(rot_y_silver,a_th):
         print ("straight")
         drive(75,0.2)
 ```
+
+* The following gif shows how the robot behaves once this function is called:
+
+<p align="center">
+<img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/silver_app.gif">
+</p>
+
+
 ------------------------------
 
 ## The `main()` function
 
-The `main()` function consists of a while loop which at every cycle updates the data regarding the position of the robot inside of the arena. Thanks to this information  the if statements of the function will decide what function is best to call to make the robot behave correctly. 
+The `main()` function consists of a while-loop that updates data regarding the robot's position inside the arena at every cycle. Thanks to this information the if-statements of the function will decide what function is best to call to make the robot behave correctly. 
 
 ### flowchart of the `main()` function
 
-<img height="500" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/flow.png">
+<p align="center">
+<img height="700" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/flow.png">
+</p>
 
 ### Explenation of the different sections of the flow chart:
 
 * **Step 1**:
-    At the beginning of the function some it's necessary to declaire some thresholds that will be used later in the code:
+    Declaration of the grabbing distance threshold:
     
-    * `d_th_silver = 0.4`: distance threshold to grab the silver token
-    * `a_th = 2`: Angle trashold within whitch the robot has to be able to go grab the silver token 
+    * `d_th_silver = 0.4` 
     
 * **Step 2**: 
-    The call of `drive(100,3)` function before the while loop is a way to accelerate the movemnt of the robot right after the spawn. This is a superfluous statement but it helps to accellerate its action.
+    The call of `drive(100,3)` function before the while loop is a way to speed up the robot right after its spawn. This statement is not necessary for the robot to operate correctly but it helps to accelerate its action.
 
 * **Step 3**: 
     Beginning of the `while(1):` loop.
 
 * **Step 4**: 
     The call of all the functions needed to make the robot aware of its surroundings at every moment during its action.
-    There are two different sets of Data about the position of the closest gold token. The only difference between the two is the angle within which the function detects the closest gold token. These sets are used at different points of the code.
+    There are two different data sets about the position of the closest gold token. The only difference between the two is the angle within which the function detects the closest gold token. These sets are used at different points of the code.
     
 ```python
     d_silver , rot_y_silver = find_silver_token()
-    d_gold, rot_y_gold= find_golden_token(60)
-    d_gold2, rot_y_gold2= find_golden_token(20)
-    gold = gold_token_list(d_silver, d_gold2)
+    d_gold, rot_y_gold= find_golden_token()
+    gold = gold_token_list(d_silver, rot_y_silver)
 ```
 * **Step 5**: 
-    Thanks to the return of the function `gold_token_list(d_silver, d_gold2)` an if statement can determine whether the gold token is closer to the robot than the detected silver is. The if statement will chose whether the robot will **approach** ( `silver_routine(rot_y_silver,a_th)`) and **grab** `grab_routine()` a silver token or if it will  continue navigate around the arena looking for one of them. 
+    Thanks to the return of the function `gold_token_list(d_silver, rot_y_silver)` an if statement can determine whether the gold token is closer to the robot than the detected silver is. The if-statement will choose whether the robot will **approach** ( `silver_routine(rot_y_silver)`) and **grab** `grab_routine()` a silver token or if it will continue to navigate around the arena looking for one of them.    
     
 ```python
     if(gold):
@@ -413,27 +427,24 @@ The `main()` function consists of a while loop which at every cycle updates the 
         if (d_gold!=-1 and d_gold<0.7):
             #If the robot gets close to a gold token 
             
-            print("turns")
             turns()
             
         else:
             #If the robot doesen't see neither the silver nor the gold token 
              
-            drive(75,0.1)
+            drive(100,0.15)
                     
             
     else: 
      #If the robot sees a silver token 
 
-        print (rot_y_silver)
-        silver_routine(rot_y_silver,a_th)
+        silver_routine(rot_y_silver)
         #Aproach to the siver token 
 
             
         if d_silver < d_th_silver:
         #The robot is within the treashold and it will operate the grab routine
-
-            print ("grab")
+        
             grab_routine()
 ```
 
@@ -441,14 +452,18 @@ Conclusions and results
 -----------
 ### Video of the robot's performance
 This video shows a speeded ap version of the perfromance of the robot during its first lap of the arena: 
-//<img height="400" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/the_whole_run.mp4">
+
+<p align="center">
+<img height="400" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/robot_run.mp4">
+</p>
 
 ### Possible improvements
-During the developing of the code i came up with a few ideas that could make the robot work smoother through out the entire run:
-* With the implementation I came up with so far, the robot points the silver tokens with in a little range. A future accomplishment for the project would be being able to view the silver tokens from a way farther distance. This improvement would make the robot start the approach routine earlier making the process of driveing towards the tokens way faster. Such result can be achived 
+During the development of the code I came up with a few ideas that could make the robot work smoother throughout the entire run:
 
-* Another way to improve the ability of the robot to approach silver tokens may be using the `code` atribute. This is one of the atributes of the object type `Marker`. Through this numeric token's identification, the robot could save the `code` of every single grabbed token and not viewing it as a grabbable object anymore. This type of control could let the robot have a 360° degrees view of its surroundings. Letting a wider field of view will help the robot identifing tokens from every possible angle makeing it easier to identifying and point the following token.
-    I've already tried to implement a function capable of recongnizeing the code of the silver token without achiveing any decent result. The thing I noticed working on this feature is that many times the latest approached token's code would not get saved inside the dedicated variable makeing it impossible for the robot to not detect it after the grabbing routine. With an improved code saveing method this routine could have been an efficent way of avoiding already grabbed silver tokens. 
+* With the implementation I came up with so far, the robot points the silver tokens within a small distance range. A future accomplishment for the project would be expanding the view of the silver tokens to a farther distance. This improvement would make the robot start the approach routine earlier turning into a faster driving process. To achieve such behavior, the detecting area of the silver tokens should be expended in the `find_silver_token()` function. However, changing this property would require some finer adjustments on the function `gold_token_list(d_silver, rot_y_silver)` which would have to take care of a larger detecting area. 
 
-This project was my first approach to the Python programming language and to the developing of a well structured git repository. Thanks to it, I gained knowledge about to the basic concepts of Python such as creating variables, managing functions, and delivering clear and well structured code that could easily be understood by other developers. I also learnd new skills about the use of [Git](https://git-scm.com) as a distributed control system which I had never worked with before.
+* Another way to improve the ability of the robot to approach silver tokens may be using the `code` attribute. `code` is one of the attributes of the object type `Marker`. Through this numeric token's identification, the robot could save the `code` of every single grabbed token and not view it as a grabbable object anymore. This type of control could let the robot have a 360° degrees view of its surroundings. Letting a wider field of view will help the robot identify tokens from every possible angle making it easier to identify and point the following token.
+  I've already tried to implement a function capable of recognizing the code of the silver token without achieving any decent result. Working on this feature, I noticed that many times the latest approached token's code would not get saved inside the dedicated variable. This mistake makes it impossible for the robot to avoid the just detected token after the grabbing routine. With an improved saving method, this routine could be an efficient way of avoiding already grabbed silver tokens. 
+
+This project was my first approach to the Python programming language and the development of a well-structured git repository. Working on this assignment, I gained knowledge about the basic concepts of Python such as creating variables, managing functions, and delivering clear and well-structured code that could easily be understood by other developers. I also learned new skills about the use of [Git](https://git-scm.com) as a distributed control system which I had never worked with before
 
