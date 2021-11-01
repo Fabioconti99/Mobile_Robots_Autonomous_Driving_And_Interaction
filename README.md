@@ -16,7 +16,7 @@ Thanks to the simulator we used for the assignment (developed by [Student Roboti
 The behavior of the robot has to stand by the following rules:
 * constantly driving the robot around the environment in the counter-clockwise direction,
 * Avoiding the gold tokens, 
-* And once the robot will get close enough to a silver token placed inside the environment, grabbing it and moves it behind itself.
+* And once the robot will get close enough to a silver token, it should grab it and move it behind itself.
 
 Picture of the **Enviroment**:
 ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/arena.png) 
