@@ -368,7 +368,8 @@ The following gif shows how the robot behaves calling this function:
     
     **Returns**:
     * *NONE*
-    
+
+**The Function**:
 ```python
 def silver_routine(rot_y_silver,a_th):
 
