@@ -454,6 +454,7 @@ Conclusions and results
 This video shows a speeded up version of the perfromance of the robot during its first lap of the arena: 
 
 
+
 ### Possible improvements
 During the development of the code I came up with a few ideas that could make the robot work smoother throughout the entire run:
 
