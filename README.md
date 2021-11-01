@@ -454,6 +454,10 @@ Conclusions and results
 This video shows a speeded up version of the perfromance of the robot during its first lap of the arena: 
 
 
+<<<<<<< HEAD
+=======
+https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/robot_run.mp4
+>>>>>>> 0aa9271a9123a78181223b1d6dd906820c3b4dd1
 
 ### Possible improvements
 During the development of the code I came up with a few ideas that could make the robot work smoother throughout the entire run:
