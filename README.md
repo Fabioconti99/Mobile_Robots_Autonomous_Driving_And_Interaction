@@ -455,6 +455,10 @@ This video shows a speeded up version of the perfromance of the robot during its
 
 
 
+https://user-images.githubusercontent.com/91262561/139698142-a46bb122-2eba-4d2a-85a1-79e39cb39a3b.mp4
+
+
+
 ### Possible improvements
 During the development of the code I came up with a few ideas that could make the robot work smoother throughout the entire run:
 
