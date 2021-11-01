@@ -2,8 +2,8 @@
 ## Python Robotics Simulator
 ### Professor. [Carmine Recchiuto](https://github.com/CarmineD8)
 
------------------------
 
+--------------------
 Project objectives
 --------------------
 
@@ -24,6 +24,7 @@ Picture of the **Enviroment**:
 With everything working correctly, the robot should lap around the circuit avoiding the gold tokens and grabbing the silver ones on an infinite loop.
 
 
+----------------------
 Installing and running
 ----------------------
 
@@ -50,13 +51,13 @@ On Ubuntu, this can be accomplished by:
 * Create symlink: `ln -s path/to/simulator/sr/robot /usr/local/lib/python2.7/dist-packages/sr/`
 
 
+---------
 Robot API
 ---------
 
 The API for controlling a simulated robot is designed to be as similar as possible to the [SR API][sr-api].
 
 ### Motors ###
-
 
 The simulated robot has two motors configured for skid steering, connected to a two-output [Motor Board](https://studentrobotics.org/docs/kit/motor_board). The left motor is connected to output `0` and the right motor to output `1`.
 
@@ -68,9 +69,11 @@ R.motors[0].m0.power = 25
 R.motors[0].m1.power = -25
 ```
 
+-------------------------------------------
 #### Functions which use this element ####
 
 This element is mainly used inside the code to make the robot drive straight (`drive(speed, seconds)`) and turn around the vertical axis (`turn(speed, seconds)`).
+
 
 * #### `drive(speed , seconds)`
     
@@ -96,6 +99,7 @@ def drive(speed, seconds):
     R.motors[0].m1.power = 0
 ```
 
+
 * #### `turn(speed , seconds)`
 
     The function turn(_,_) sets an angular velocity to the robot resulting in a rotation around the y axis (perpendicular to the map). To achieve this behavior, the function makes the robot's motors run at an opposite speed for a certain amount of time. 
@@ -119,9 +123,9 @@ def drive(speed, seconds):
     R.motors[0].m1.power = 0
 ```
 
+
 -------------------
 ### The Grabber ###
-
 
 The robot is equipped with a grabber, capable of picking up a token which is in front of the robot and within 0.4 metres of the robot's centre. To pick up a token, call the `R.grab` method:
 
@@ -135,7 +139,7 @@ To drop the token, call the `R.release` method.
 
 Cable-tie flails are not implemented.
 
-
+---------------------------------------------
 #### Functions which use these elements ####
 
 * #### `grab_routine()`
@@ -174,6 +178,7 @@ The following **gif** represents the behavior of the robot once the function is 
 <img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/grab.gif">
 </p>
 
+
 -------------------
 ### Vision ###
 
@@ -210,6 +215,7 @@ for m in markers:
         print " - Arena marker {0} is {1} metres away".format( m.info.offset, m.dist )
 ```
 
+------------------------------------------
 #### Functions which use this element ####
 
 The `R.see` method is used in the code for making the robot aware of its surroundings. Thanks to the Data provided by this method, the robot will be able to move inside the environment according to the tasks it has to accomplish. 
@@ -318,6 +324,7 @@ def gold_token_list(d_s,rot_s):
             return False
 ```
 
+
 * #### `turns()`
 
     The function `turns()` has the role of making the robot turn towards the opposite direction of the closest wall of gold tokens. Thanks to it, the robot will never hit the walls of the maze and will keep driving in the counter-clockwise direction. 
@@ -350,6 +357,7 @@ The following gif shows how the robot behaves calling this function:
 <p align="center">
 <img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns.gif">
 </p>
+
 
 * #### `silver_routine(rot_y_silver,a_th=2)`
     
@@ -385,7 +393,6 @@ def silver_routine(rot_y_silver,a_th):
 
 
 ------------------------------
-
 ## The `main()` function
 
 The `main()` function consists of a while-loop that updates data regarding the robot's position inside the arena at every cycle. Thanks to this information the if-statements of the function will decide what function is best to call to make the robot behave correctly. 
@@ -447,9 +454,10 @@ The `main()` function consists of a while-loop that updates data regarding the r
         
             grab_routine()
 ```
-
+------------------------
 Conclusions and results
 -----------
+
 ### Video of the robot's performance
 This video shows a speeded up version of the perfromance of the robot during its first lap of the arena: 
 
@@ -466,5 +474,7 @@ During the development of the code I came up with a few ideas that could make th
 * Another way to improve the ability of the robot to approach silver tokens may be using the `code` attribute. `code` is one of the attributes of the object type `Marker`. Through this numeric token's identification, the robot could save the `code` of every single grabbed token and not view it as a grabbable object anymore. This type of control could let the robot have a 360° degrees view of its surroundings. Letting a wider field of view will help the robot identify tokens from every possible angle making it easier to identify and point the following token.
   I've already tried to implement a function capable of recognizing the code of the silver token without achieving any decent result. Working on this feature, I noticed that many times the latest approached token's code would not get saved inside the dedicated variable. This mistake makes it impossible for the robot to avoid the just detected token after the grabbing routine. With an improved saving method, this routine could be an efficient way of avoiding already grabbed silver tokens. 
 
+
+### Conclusions
 This project was my first approach to the Python programming language and the development of a well-structured git repository. Working on this assignment, I gained knowledge about the basic concepts of Python such as creating variables, managing functions, and delivering clear and well-structured code that could easily be understood by other developers. I also learned new skills about the use of [Git](https://git-scm.com) as a distributed control system which I had never worked with before
 
