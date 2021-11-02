@@ -271,7 +271,8 @@ The following picture shows how the detecting area looks like:
 
 * #### `find_golden_token()`
 This function works in a similar way to `find_silver_token()` but for gold tokens.
-Thanks to this function, the robot will detect the closest gold token to the center of the robot within a defined area. The main difference between `find_silver_token()` and `find_golden_token()` is the wider detecting area of 120° degrees compared to the 90° degrees of the other one. 
+Thanks to this function, the robot will detect the closest gold token to the center of the robot within a defined area. The main difference between `find_silver_token()` and `find_golden_token()` is the wider detecting area of 120° degrees compared to the 90° degrees of the other one.
+`find_golden_token()` is used inside the `main()` function to check if the robot got too close to the wall. This function will tell the robot whether it has to change direction to get away of a wall (`turns()`) or if it has to drive straight(`drive()`).
 
 **The function**:
 
@@ -380,7 +381,7 @@ def turns():
 
 * #### `silver_routine(rot_y_silver,a_th=2)`
     
-    The function `silver_routine(rot_y_silver,a_th)` doesen't directly uses the `R.see()` method but it's compleatly. However, The way the function works expliots the data coming from it. It uses the threshold initialized at the beginning of the `main` function to create a routine capable of approaching the detected silver tokens. The function will loop until the relative angle between the robot and the silver token settles in an angular window defined by the set threshold. Once this condition is taken care of, the robot will start driving towards the detected token.
+    The function `silver_routine(rot_y_silver,a_th)` doesen't directly use the `R.see()` method. However, The way the function works expliots the data coming from it. It uses the threshold initialized at the beginning of the `main` function to create a routine capable of approaching the detected silver tokens. The function will loop until the relative angle between the robot and the silver token settles in an angular window defined by the set threshold. Once this condition is taken care of, the robot will start driving towards the detected token.
     **Arguments**:
     * *rot_y_silver*: relative angle between the detected silver token and the robot
     * *a_th*: threashold within witch the robot will have to mantain its relative angle between itself and the detected silver token. 
@@ -404,7 +405,6 @@ def silver_routine(rot_y_silver,a_th):
         print ("straight")
         drive(75,0.2)
 ```
-
 
 * The following **gif** represents the behavior of the robot once the function is called in the `main()` function:
 
@@ -447,7 +447,7 @@ The `main()` function consists of a while-loop that updates data regarding the r
     gold = gold_token_list(d_silver, rot_y_silver)
 ```
 * **Step 5**: 
-    Thanks to the return of the function `gold_token_list(d_silver, rot_y_silver)` an if statement can determine whether the gold token is closer to the robot than the detected silver is. The if-statement will choose whether the robot will **approach** ( `silver_routine(rot_y_silver)`) and **grab** `grab_routine()` a silver token or if it will continue to navigate around the arena looking for one of them.    
+    Thanks to the return of the function `gold_token_list(d_silver, rot_y_silver)` an if statement can determine whether the gold token is closer to the robot than the detected silver is. The if-statement will choose whether the robot will **approach** ( `silver_routine(rot_y_silver)`) and **grab** (`grab_routine()`) a silver token or if it will continue to navigate around the arena looking for one of them (`turns()`, `drive(speed,seconds)`).    
     
 ```python
     if(gold):
@@ -493,10 +493,10 @@ During the development of the code I came up with a few ideas that could make th
 
 * With the implementation I came up with so far, the robot points the silver tokens within a small distance range. A future accomplishment for the project would be expanding the view of the silver tokens to a farther distance. This improvement would make the robot start the approach routine earlier turning into a faster driving process. To achieve such behavior, the detecting area of the silver tokens should be expended in the `find_silver_token()` function. However, changing this property would require some finer adjustments on the function `gold_token_list(d_silver, rot_y_silver)` which would have to take care of a larger detecting area. 
 
-* Another way to improve the ability of the robot to approach silver tokens may be using the `code` attribute. `code` is one of the attributes of the object type `Marker`. Through this numeric token's identification, the robot could save the `code` of every single grabbed token and not view it as a grabbable object anymore. This type of control could let the robot have a 360° degrees view of its surroundings. Letting a wider field of view will help the robot identify tokens from every possible angle making it easier to identify and point the following token.
+* Another way to improve the ability of the robot to approach silver tokens may be using the `code` attribute. `code` is one of the attributes of the `Marker` object type. Through this numeric token's identification, the robot could save the `code` of every single grabbed token and not view it as a grabbable object anymore. This type of control could let the robot have a 360° degrees view of its surroundings. Letting a wider field of view will help the robot identify tokens from every possible angle making it easier to identify and point the following token.
   I've already tried to implement a function capable of recognizing the code of the silver token without achieving any decent result. Working on this feature, I noticed that many times the latest approached token's code would not get saved inside the dedicated variable. This mistake makes it impossible for the robot to avoid the just detected token after the grabbing routine. With an improved saving method, this routine could be an efficient way of avoiding already grabbed silver tokens. 
 
 
 ### Conclusions
-This project was my first approach to the Python programming language and the development of a well-structured git repository. Working on this assignment, I gained knowledge about the basic concepts of Python such as creating variables, managing functions, and delivering clear and well-structured code that could easily be understood by other developers. I also learned new skills about the use of [Git](https://git-scm.com) as a distributed control system which I had never worked with before
+This project was my first approach to the Python programming language and the development of a well-structured git repository. Working on this assignment, I gained knowledge about the basic concepts of Python such as creating variables, managing functions, and delivering clear and well-structured code that could easily be understood by other developers. I also learned new skills about the use of [Git](https://git-scm.com) as a distributed control system which I had never worked with before.
 
