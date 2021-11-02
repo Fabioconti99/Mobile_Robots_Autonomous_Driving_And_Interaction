@@ -1,5 +1,5 @@
 # [Research_Track_1](https://unige.it/en/off.f/2021/ins/51201.html?codcla=10635) , [Robotics Engineering](https://courses.unige.it/10635) ([UNIGE](https://unige.it/it/)) : First assignement
-## Python Robotics Simulator
+## Python Robotics Simulator <img height="30" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/python.png">
 ### Professor. [Carmine Recchiuto](https://github.com/CarmineD8)
 
 
@@ -7,7 +7,7 @@
 Project objectives
 --------------------
 
-The aim of this project was to code a Python script <code><img height="20" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/python.png"></code> capable of making an holonomic robot <img height="25" width = "25" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/robot.png"> behave correctly inside of a given environment.
+The aim of this project was to code a Python script capable of making an holonomic robot <img height="25" width = "25" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/robot.png"> behave correctly inside of a given environment.
 
 Thanks to the simulator we used for the assignment (developed by [Student Robotics](https://studentrobotics.org)), the robot will spawn inside of an arena composed of squared tokens of two different colors:
 * The **gold tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token.png) represent the wall of the maze the robot had to navigate in. 
