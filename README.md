@@ -176,7 +176,7 @@ def grab_routine():
 * The following **gif** represents the behavior of the robot once the function is called in the `main()` function:
 
 <p align="center">
-<img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/grab.gif">
+<img height="300" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/grab.gif">
 </p>
 
 
@@ -291,7 +291,7 @@ def find_golden_token(th):
 
 * An example of the **detecting area for gold tokens** is shown in the following picture:
 <p align="center">
-<img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns_detector.png">
+<img height="300" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns_detector.png">
 </p>
 
 * #### `gold_token_list(d_s,rot_s)`
@@ -332,7 +332,7 @@ def gold_token_list(d_s,rot_s):
 
 * The following picture shows the sensors the function needs to detect the silver and gold tokens:
 <p align="center">
-<img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/gold_token_list.png">
+<img height="300" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/gold_token_list.png">
 </p>
 
 * #### `turns()`
@@ -367,14 +367,14 @@ def turns():
 
 <p align="center">
 
-<img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns.gif">
+<img height="300" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns.gif">
 </p>
 
 * The following **picture** shows the lateral sensors needed to turn to the other way of the direction of the wall:
 
 <p align="center">
 
-<img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns.png">
+<img height="300" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns.png">
 </p>
 
 
@@ -409,7 +409,7 @@ def silver_routine(rot_y_silver,a_th):
 * The following **gif** represents the behavior of the robot once the function is called in the `main()` function:
 
 <p align="center">
-<img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/silver_app.gif">
+<img height="300" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/silver_app.gif">
 </p>
 
 
