@@ -19,6 +19,7 @@ The behavior of the robot has to stand by the following rules:
 * And once the robot will get close enough to a silver token, it should grab it and move it behind itself.
 
 Picture of the **Enviroment**:
+
 ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/arena.png) 
 
 With everything working correctly, the robot should lap around the circuit avoiding the gold tokens and grabbing the silver ones on an infinite loop.
@@ -172,7 +173,7 @@ def grab_routine():
     drive(-25,1)
     turn(-40,1.90)
 ```
-The following **gif** represents the behavior of the robot once the function is called in the `main()` function:
+* The following **gif** represents the behavior of the robot once the function is called in the `main()` function:
 
 <p align="center">
 <img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/grab.gif">
@@ -288,6 +289,11 @@ def find_golden_token(th):
            return dist, rot_y
 ```
 
+* An example of the **detecting area for gold tokens** is shown in the following picture:
+<p align="center">
+<img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns_detector.png">
+</p>
+
 * #### `gold_token_list(d_s,rot_s)`
 
     `gold_token_list(d_s,rot_s)` checks if the silver token detected by the function `find_silver_token()` is the closest one inside of a 60° degrees window centered around the detected silver token.
@@ -324,6 +330,10 @@ def gold_token_list(d_s,rot_s):
             return False
 ```
 
+* The following picture shows the sensors the function needs to detect the silver and gold tokens:
+<p align="center">
+<img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/gold_token_list.png">
+</p>
 
 * #### `turns()`
 
@@ -352,10 +362,19 @@ def turns():
     else:
         turn(25,0.1)
 ```
-The following gif shows how the robot behaves calling this function:
+
+* The following **gif** represents the behavior of the robot once the function is called in the `main()` function:
 
 <p align="center">
+
 <img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns.gif">
+</p>
+
+* The following **picture** shows the lateral sensors needed to turn to the other way of the direction of the wall:
+
+<p align="center">
+
+<img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/turns.png">
 </p>
 
 
@@ -386,7 +405,8 @@ def silver_routine(rot_y_silver,a_th):
         drive(75,0.2)
 ```
 
-* The following gif shows how the robot behaves once this function is called:
+
+* The following **gif** represents the behavior of the robot once the function is called in the `main()` function:
 
 <p align="center">
 <img height="200" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/silver_app.gif">
@@ -455,6 +475,7 @@ The `main()` function consists of a while-loop that updates data regarding the r
         
             grab_routine()
 ```
+
 ------------------------
 Conclusions and results
 -----------
