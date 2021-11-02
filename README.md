@@ -76,7 +76,7 @@ R.motors[0].m1.power = -25
 This element is mainly used inside the code to make the robot drive straight (`drive(speed, seconds)`) and turn around the vertical axis (`turn(speed, seconds)`).
 
 
-* #### `drive(speed , seconds)` <img height="25" width = "25" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/robot_drive.gif">
+* #### `drive(speed , seconds)` <img height="30" width = "30" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/robot_drive.gif">
     
     The function `drive(_,_)` sets a linear velocity to the robot resulting in a straight shifting. To do so, it makes the robot's motors run at the same speed for a certain amount of time. 
     
@@ -101,7 +101,7 @@ def drive(speed, seconds):
 ```
 
 
-* #### `turn(speed , seconds)` <img height="25" width = "25" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/robot_turn.gif">
+* #### `turn(speed , seconds)` <img height="30" width = "30" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/robot_turn.gif">
 
     The function turn(_,_) sets an angular velocity to the robot resulting in a rotation around the y axis (perpendicular to the map). To achieve this behavior, the function makes the robot's motors run at an opposite speed for a certain amount of time. 
 
