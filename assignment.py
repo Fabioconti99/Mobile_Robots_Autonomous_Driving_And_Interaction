@@ -74,7 +74,7 @@ def find_golden_token():
 
     dist=2
     for token in R.see():
-        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -60 < token.rot_y < 60:
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -45 < token.rot_y < 45:
             dist=token.dist
         rot_y=token.rot_y
     if dist==2:
