@@ -154,10 +154,10 @@ Cable-tie flails are not implemented.
    * turning back to the original trajectory,
    * and keep moving forward. 
   
-  `grab_routine()` is called inside the main function only when the robot is very close to a silver token. The control on the relative distance between the robot and the token makes the robot always grab the object avoiding mistakes during the use of the `grab()` function.
+  `grab_routine()` is called inside the main function only when the robot is very close to a silver token. The control on the relative distance between the robot and the token makes the robot always grab the object avoiding mistakes during the use of the `grab()` function. Based on the argument assigned, the robot will know in what direction it will have to turn when grabbing the silver token.
 
     **Arguments**:
-    * *NONE*
+    * *BOOL STATEMENT*: If the closest glod wall is to his right (**True**) the robot will grab and rotate towards the counter-clockwise direction to avoid hitting the wall. The opposite thing will happen if the closest gold wall is to his left.
 
     **Returns**:
     * *NONE*
@@ -165,13 +165,19 @@ Cable-tie flails are not implemented.
  **The function**:
 
 ```python
-def grab_routine():
-
-    R.grab()    
-    turn(40,1.90)
-    R.release()
-    drive(-25,1)
-    turn(-40,1.90)
+def grab_routine(r_l):
+    
+    R.grab()
+    if (not r_l):
+        turn(40,1.90)
+        R.release()
+        drive(-25,1)
+        turn(-40,1.90)
+    else:
+        turn(-40,1.90)
+        R.release()
+        drive(-25,1)
+        turn(40,1.90)
 ```
 * The following **gif** represents the behavior of the robot once the function is called in the `main()` function:
 
@@ -256,7 +262,7 @@ def find_silver_token():
     dist = 2 
     for token in R.see():
     
-        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -45 <token.rot_y< 45:
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -60 <token.rot_y< 60:
             dist=token.dist
             rot_y=token.rot_y
     if dist == 2:
@@ -265,23 +271,23 @@ def find_silver_token():
            return dist, rot_y
 ```
 
-With these new restrictions, the detecting area will assume a fraction circle shape 90° degrees wide and 2 units deep right in front of the robot. 
+With these new restrictions, the detecting area will assume a fraction circle shape 120° degrees wide and 2 units deep right in front of the robot. 
 The following picture shows how the detecting area looks like:
 
 
 * #### `find_golden_token()`
 This function works in a similar way to `find_silver_token()` but for gold tokens.
-Thanks to this function, the robot will detect the closest gold token to the center of the robot within a defined area. The main difference between `find_silver_token()` and `find_golden_token()` is the wider detecting area of 120° degrees compared to the 90° degrees of the other one.
+Thanks to this function, the robot will detect the closest gold token to the center of the robot within a defined area. The main difference between `find_silver_token()` and `find_golden_token()` is the wider detecting area of 90° degrees compared to the 90° degrees of the other one.
 `find_golden_token()` is used inside the `main()` function to check if the robot got too close to the wall. This function will tell the robot whether it has to change direction to get away of a wall (`turns()`) or if it has to drive straight(`drive()`).
 
 **The function**:
 
 ```python
-def find_golden_token(th):
+def find_golden_token():
 
     dist=2
     for token in R.see():
-        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -th < token.rot_y < th:
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -45 < token.rot_y < 45:
             dist=token.dist
         rot_y=token.rot_y
     if dist==2:
@@ -345,12 +351,14 @@ def gold_token_list(d_s,rot_s):
     * *NONE*
 
     **Returns**:
-    * *NONE*
+    * *True*: if the closest gold token returns a **positive** relative angle to the robot.
+    * *false*: if the closest gold token returns a **negative** relative angle to the robot.
 
 **The function**:
 
 ```python
 def turns():
+
     dist=100
     for token in R.see():
         if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and (-105 < token.rot_y < -75 or 75<token.rot_y<105):
@@ -360,8 +368,10 @@ def turns():
         print("err")
     if rot_y>=0:
         turn(-25,0.1)
+        return True
     else:
         turn(25,0.1)
+        return False
 ```
 
 * The following **gif** represents the behavior of the robot once the function is called in the `main()` function:

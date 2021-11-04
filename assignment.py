@@ -53,7 +53,7 @@ def find_silver_token():
     dist = 2
     for token in R.see():
     
-        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -45 <token.rot_y< 45:
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -60 <token.rot_y< 60:
             dist=token.dist
             rot_y=token.rot_y
     if dist == 2:
@@ -137,8 +137,10 @@ def turns():
         print("err")
     if rot_y>=0:
         turn(-25,0.1)
+        return True
     else:
         turn(25,0.1)
+        return False
         
 #########################################
 """
@@ -149,13 +151,19 @@ def turns():
     the robot will take the silver token and place it behind itself
     
 """
-def grab_routine():
-
+def grab_routine(r_l):
+    
     R.grab()
-    turn(40,1.90)
-    R.release()
-    drive(-25,1)
-    turn(-40,1.90)
+    if (not r_l):
+        turn(40,1.90)
+        R.release()
+        drive(-25,1)
+        turn(-40,1.90)
+    else:
+        turn(-40,1.90)
+        R.release()
+        drive(-25,1)
+        turn(40,1.90)
 
 ###########################################
 """
@@ -225,7 +233,7 @@ def main():
             #The robot is within the treashold and it will operate the grab routine
 
                 print ("grab")
-                grab_routine()
+                grab_routine(turns())
                 #Grabbing routine of the silver token
 ###########################################
                     
