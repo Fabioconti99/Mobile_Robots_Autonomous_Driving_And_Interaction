@@ -169,15 +169,15 @@ def grab_routine(r_l):
     
     R.grab()
     if (not r_l):
-        turn(40,1.90)
+        turn(30,2.50)
         R.release()
         drive(-25,1)
-        turn(-40,1.90)
+        turn(-40,2.50)
     else:
-        turn(-40,1.90)
+        turn(-40,2.50)
         R.release()
         drive(-25,1)
-        turn(40,1.90)
+        turn(40,2.50)
 ```
 * The following **gif** represents the behavior of the robot once the function is called in the `main()` function:
 
@@ -259,19 +259,19 @@ Following the same concept of the previously shown cycle, our function will have
 ```python
 def find_silver_token(): 
     
-    dist = 2 
+    dist = 1.2 
     for token in R.see():
     
-        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -60 <token.rot_y< 60:
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -70 <token.rot_y< 70:
             dist=token.dist
             rot_y=token.rot_y
-    if dist == 2:
+    if dist == 1.2:
         return -1, -1
     else:
            return dist, rot_y
 ```
 
-With these new restrictions, the detecting area will assume a fraction circle shape 120° degrees wide and 2 units deep right in front of the robot. 
+With these new restrictions, the detecting area will assume a fraction circle shape 140° degrees wide and 1.2 units deep right in front of the robot. 
 The following picture shows how the detecting area looks like:
 
 
@@ -285,12 +285,12 @@ Thanks to this function, the robot will detect the closest gold token to the cen
 ```python
 def find_golden_token():
 
-    dist=2
+    dist= 1.2
     for token in R.see():
         if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -45 < token.rot_y < 45:
             dist=token.dist
         rot_y=token.rot_y
-    if dist==2:
+    if dist== 1.2:
         return -1, -1
     else:
            return dist, rot_y
@@ -321,12 +321,12 @@ def gold_token_list(d_s,rot_s):
         print("no silver")
         return True
     else:
-        dist=2
+        dist= 1.2
         for token in R.see():
             if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and rot_s-30 < token.rot_y < rot_s+30:
                    dist=token.dist
             rot_y=token.rot_y
-        if dist==2:
+        if dist== 1.2:
             print("no gold")
             return False
         elif (d_s>dist):
@@ -457,12 +457,12 @@ The `main()` function consists of a while-loop that updates data regarding the r
     gold = gold_token_list(d_silver, rot_y_silver)
 ```
 * **Step 5**: 
-    Thanks to the return of the function `gold_token_list(d_silver, rot_y_silver)` an if statement can determine whether the gold token is closer to the robot than the detected silver is. The if-statement will choose whether the robot will **approach** ( `silver_routine(rot_y_silver)`) and **grab** (`grab_routine()`) a silver token or if it will continue to navigate around the arena looking for one of them (`turns()`, `drive(speed,seconds)`).    
+    Thanks to the return of the function `gold_token_list(d_silver, rot_y_silver)` an if-statement can determine whether the gold token is closer to the robot than the detected silver is. The if-statement will choose whether the robot will **approach** ( `silver_routine(rot_y_silver)`) and **grab** (`grab_routine()`) a silver token or if it will continue to navigate around the arena looking for one of them (`turns()`, `drive(speed,seconds)`).    
     
 ```python
     if(gold):
         
-        if (d_gold!=-1 and d_gold<0.7):
+        if (d_gold!=-1 and d_gold<0.9):
             #If the robot gets close to a gold token 
             
             turns()

@@ -42,21 +42,21 @@ def turn(speed, seconds):
 ###########################################
 """
     FIND_SILVER_TOKEN
-    Function to find the closest silver token within a 2 units radius in front of the robot
+    Function to find the closest silver token within a 1.2 units radius in front of the robot
 
     Returns:
-    dist (float): distance of the closest silver token (-1 if no silver token is detected in a 2 units radius in front of it)
-    rot_y (float): angle between the robot and the closest silver token (-1 if no silver token is detected in a 2 units radius in front of it)
+    dist (float): distance of the closest silver token (-1 if no silver token is detected in a 1.2 units radius in front of it)
+    rot_y (float): angle between the robot and the closest silver token (-1 if no silver token is detected in a 1.2 units radius in front of it)
 """
 def find_silver_token():
 
-    dist = 2
+    dist = 1.2
     for token in R.see():
     
-        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -60 <token.rot_y< 60:
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -70 <token.rot_y< 70:
             dist=token.dist
             rot_y=token.rot_y
-    if dist == 2:
+    if dist == 1.2:
         return -1, -1
     else:
            return dist, rot_y
@@ -64,20 +64,20 @@ def find_silver_token():
 ###########################################
 """
     FIND_GOLDEN_TOKEN
-    Function to find the closest silver token within a 2 units radius in front of the robot
+    Function to find the closest silver token within a 1.2 units radius in front of the robot
 
     Returns:
-    dist (float): distance of the closest gold token (-1 if no silver token is detected in a 2 units radius in front of it)
-    rot_y (float): angle between the robot and the closest gold token (-1 if no silver token is detected in a 2 units radius in front of it)
+    dist (float): distance of the closest gold token (-1 if no silver token is detected in a 1.2 units radius in front of it)
+    rot_y (float): angle between the robot and the closest gold token (-1 if no silver token is detected in a 1.2 units radius in front of it)
 """
 def find_golden_token():
 
-    dist=2
+    dist=1.2
     for token in R.see():
         if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -45 < token.rot_y < 45:
             dist=token.dist
         rot_y=token.rot_y
-    if dist==2:
+    if dist==1.2:
         return -1, -1
     else:
            return dist, rot_y
@@ -88,11 +88,11 @@ def find_golden_token():
     Function to check if there's a golden token in the way of a silver one
 
     Args:
-    d_s (float): distance of the closest silver token (-1 if no silver token is detected in a 2 units radius in front of it)
-    rot_s (float): relative angle between the closest silver token and the robot (-1 if no silver token is detected in a 2 units radius in front of it)
+    d_s (float): distance of the closest silver token (-1 if no silver token is detected in a 1.2 units radius in front of it)
+    rot_s (float): relative angle between the closest silver token and the robot (-1 if no silver token is detected in a 1.2 units radius in front of it)
             
     Returns:
-    True: if no silver is found in a 2 units angle in front of the robot or a gold token is closer to the robot than a silver is
+    True: if no silver is found in a 1.2 units angle in front of the robot or a gold token is closer to the robot than a silver is
     False: if the silver token is closer to the robot than any of the golden ones
 """
 def gold_token_list(d_s,rot_s):
@@ -100,12 +100,12 @@ def gold_token_list(d_s,rot_s):
         #print("no silver")
         return True
     else:
-        dist=2
+        dist=1.2
         for token in R.see():
             if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and rot_s-30 < token.rot_y < rot_s+30:
                    dist=token.dist
             rot_y=token.rot_y
-        if dist==2:
+        if dist==1.2:
             #print("no gold")
             return False
         elif (d_s>dist):
@@ -155,15 +155,15 @@ def grab_routine(r_l):
     
     R.grab()
     if (not r_l):
-        turn(40,1.90)
+        turn(30,2.5)
         R.release()
         drive(-25,1)
-        turn(-40,1.90)
+        turn(-30,2.5)
     else:
-        turn(-40,1.90)
+        turn(-30,2.5)
         R.release()
         drive(-25,1)
-        turn(40,1.90)
+        turn(30,2.5)
 
 ###########################################
 """
@@ -209,15 +209,15 @@ def main():
         
         if(gold):
             
-            if (d_gold!=-1 and d_gold<0.8):
-             #If the robot gets close to a gold
+            if (d_gold!=-1 and d_gold<0.9):
+             #If the robot gets close to a gold wall
                  print("turns")
                  turns()
                  #Routine to get way of the wall
             
             else:
              #If the robot doesen't see neither the silver nor the gold token
-             
+                print("drive")
                 drive(100,0.2)
                 
         
