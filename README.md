@@ -392,6 +392,7 @@ def turns():
 * #### `silver_routine(rot_y_silver,a_th=2)`
     
     The function `silver_routine(rot_y_silver,a_th)` doesen't directly use the `R.see()` method. However, The way the function works expliots the data coming from it. It uses the threshold initialized at the beginning of the `main` function to create a routine capable of approaching the detected silver tokens. The function will loop until the relative angle between the robot and the silver token settles in an angular window defined by the set threshold. Once this condition is taken care of, the robot will start driving towards the detected token.
+    
     **Arguments**:
     * *rot_y_silver*: relative angle between the detected silver token and the robot
     * *a_th*: threashold within witch the robot will have to mantain its relative angle between itself and the detected silver token. 
