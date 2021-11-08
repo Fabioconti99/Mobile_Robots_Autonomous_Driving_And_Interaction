@@ -10,7 +10,7 @@ Project objectives
 The aim of this project was to code a Python script capable of making an holonomic robot <img height="25" width = "25" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/robot.png"> behave correctly inside of a given environment.
 
 Thanks to the simulator we used for the assignment (developed by [Student Robotics](https://studentrobotics.org)), the robot will spawn inside of an arena composed of squared tokens of two different colors:
-* The **gold tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token.png) represent the wall of the maze the robot had to navigate in. 
+* The **gold tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token.png) represent the wall of the maze the robot has to navigate in. 
 * The **silver tokens** ![alt text](https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/sr/token_silver.png) represent the objects the robot has to interact with.
 
 The behavior of the robot has to stand by the following rules:
@@ -103,7 +103,7 @@ def drive(speed, seconds):
 
 * #### `turn(speed , seconds)` <img height="30" width = "30" src="https://github.com/Fabioconti99/RT1_Assignment_1/blob/main/images/robot_turn.gif">
 
-    The function turn(_,_) sets an angular velocity to the robot resulting in a rotation around the y axis (perpendicular to the map). To achieve this behavior, the function makes the robot's motors run at an opposite speed for a certain amount of time. 
+    The function `turn(_,_)` sets an angular velocity to the robot resulting in a rotation around the y axis (perpendicular to the map). To achieve this behavior, the function makes the robot's motors run at an opposite speed for a certain amount of time. 
 
     **Arguments**:
     * *speed*: represents the module of the speed at which the wheels will spin. To make the robot spin around its vertical axis, the velocity of the spin assigned to the right wheel is opposite to the velocity of the left one. If the ***speed*** argument is **positive** the rotation will be counter-clockwise. Given a **negative *speed***, the robot will rotate **clockwise**.
@@ -246,7 +246,7 @@ def find_token():
 In this case, there are no constraints about where and what the robot has to check. 
 To get the Data about the position of the **closest silver token** within a determined area we have to take all the attributes returned by the `R.see()` method and filter them. 
 Using only the `marker_type`, `length`, and `rot_y` attributes we can define the detecting area within which `find_silver_token()` will look for the closest silver token. 
-Following the same concept of the previously shown cycle, our function will have to compute the same control on the distance between the tokens and the robot but with extra constraints. These limitations will prevent the cycle from considering tokens of different types other than silver and tokens located outside the detecting region. 
+Following the same concept of the previously shown cycle, our function will have to compute the same control on the distance between the tokens and the robot but with extra constraints. These limitations will prevent the cycle from considering tokens of different types other than the silver ones located inside the detecting region. 
 
 **Arguments**:
 * *NONE*
@@ -271,8 +271,7 @@ def find_silver_token():
            return dist, rot_y
 ```
 
-With these new restrictions, the detecting area will assume a fraction circle shape 140° degrees wide and 1.2 units deep right in front of the robot. 
-The following picture shows how the detecting area looks like:
+With these new restrictions, the detecting area will assume a fraction circle shape of 140° degrees wide and 1.2 units deep right in front of the robot. 
 
 
 * #### `find_golden_token()`
@@ -506,8 +505,11 @@ During the development of the code I came up with a few ideas that could make th
 
 * Another way to improve the ability of the robot to approach silver tokens may be using the `code` attribute. `code` is one of the attributes of the `Marker` object type. Through this numeric token's identification, the robot could save the `code` of every single grabbed token and not view it as a grabbable object anymore. This type of control could let the robot have a 360° degrees view of its surroundings. Letting a wider field of view will help the robot identify tokens from every possible angle making it easier to identify and point the following token.
   I've already tried to implement a function capable of recognizing the code of the silver token without achieving any decent result. Working on this feature, I noticed that many times the latest approached token's code would not get saved inside the dedicated variable. This mistake makes it impossible for the robot to avoid the just detected token after the grabbing routine. With an improved saving method, this routine could be an efficient way of avoiding already grabbed silver tokens. 
+  
+* A further improvement for the project will be changing the logic behind the `turn(speed, seconds)` function. The robot turns thanks to the arguments *speed* and *seconds* which tell the robot's motors for how long and at what speed to spin. The implementation I'd like to achieve concerns a change of the arguments passed to the function. Instead of having speed and seconds passed as parameters, it would be more effective to input an angle the robot's rotation will match. Running the simulation many times, I noticed a slight difference based on the stress condition of the processor. The improvement provided by this change will make sure to have the robot's rotations always equal despite the machine running the simulation. 
 
 
 ### Conclusions
+To fease all the requests of the project, I choose to manage the structure of the code with a simple and recorsive logic. 
 This project was my first approach to the Python programming language and the development of a well-structured git repository. Working on this assignment, I gained knowledge about the basic concepts of Python such as creating variables, managing functions, and delivering clear and well-structured code that could easily be understood by other developers. I also learned new skills about the use of [Git](https://git-scm.com) as a distributed control system which I had never worked with before.
 
