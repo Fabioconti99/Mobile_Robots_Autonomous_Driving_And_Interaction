@@ -510,6 +510,6 @@ During the development of the code I came up with a few ideas that could make th
 
 
 ### Conclusions
-To fease all the requests of the project, I choose to manage the structure of the code with a simple and recorsive logic. 
+To take care of all the project's requests, I choose to manage the code's structure with simple logic. Thanks to this approach, I was able to get to the end of the assignment with a short and easy-to-get-through code.  Thanks to the well-chosen parameters passed to the detecting functions, the robot can lap around the circuit according to the given roles. The time taken by the robot to finish flawlessly a single lap lies well under the three minutes mark. 
 This project was my first approach to the Python programming language and the development of a well-structured git repository. Working on this assignment, I gained knowledge about the basic concepts of Python such as creating variables, managing functions, and delivering clear and well-structured code that could easily be understood by other developers. I also learned new skills about the use of [Git](https://git-scm.com) as a distributed control system which I had never worked with before.
 
