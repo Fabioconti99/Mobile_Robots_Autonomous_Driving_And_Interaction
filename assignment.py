@@ -41,14 +41,14 @@ def turn(speed, seconds):
 
 ###########################################
 """
-    FIND_SILVER_TOKEN
-    Function to find the closest silver token within a defined area infront of the robot. 
-    The shape of the detecting area is a fraction of a circle 140° degrees wide and 1.2 distance units deep.
-
-    Returns:
-    dist (float): distance of the closest silver token detected within the area (-1 if no silver token is detected).
-    rot_y (float): angle between the robot and the closest silver token detected within the area (-1 if no silver token is detected).
+	FIND_SILVER_TOKEN
+	Function to find the closest silver token within a defined area infront of the robot. The shape of the detecting area is a fraction of a circle 140 degrees wide and 1.2 distance units deep.
+	Returns:
+	dist (float): distance of the closest silver token detected within the area (-1 if no silver token is detected).
+	rot_y (float): angle between the robot and the closest silver token detected within the area (-1 if no silver token is detected).
+	
 """
+
 def find_silver_token():
 
     dist = 1.2
@@ -64,13 +64,13 @@ def find_silver_token():
 
 ###########################################
 """
-    FIND_GOLDEN_TOKEN
-    Function to find the closest gold token within a defined area infront of the robot. 
-    The shape of the detecting area is a fraction of a circle 140° degrees wide and 1.2 distance units deep.
-
-    Returns:
-    dist (float): distance of the closest gold token detected within the area (-1 if no silver token is detected).
-    rot_y (float): angle between the robot and the closest gold token detected within the area (-1 if no silver token is detected).
+	FIND_GOLDEN_TOKEN
+	Function to find the closest gold token within a defined area infront of the robot. 
+	The shape of the detecting area is a fraction of a circle 140 degrees wide and 1.2 distance units deep.
+	
+	Returns:
+	dist (float): distance of the closest gold token detected within the area (-1 if no silver token is detected).
+	rot_y (float): angle between the robot and the closest gold token detected within the area (-1 if no silver token is detected).
 """
 def find_golden_token():
 
@@ -86,16 +86,17 @@ def find_golden_token():
 
 ###########################################
 """
-    GOLD_TOKEN_LIST
-    Function that checks if there's a golden token between the robot and the detected silver one inside of a 60° degrees window centered around the detected silver token. 
-
-    Args:
-    d_s (float): distance of the closest silver token (-1 if no silver token is detected).
-    rot_s (float): relative angle between the closest silver token and the robot (-1 if no silver token is detected).
-            
-    Returns:
-    True: if either no silver is found by the find_silver_token() function or a gold token is closer to the robot than a silver one is.
-    False: if the detected silver token is closer to the robot than any of the golden ones are.
+	GOLD_TOKEN_LIST
+	Function that checks if there's a golden token between the robot and the detected silver one inside of a 60 degrees window centered around the detected silver token. 
+	
+	Args:
+	d_s (float): distance of the closest silver token (-1 if no silver token is detected).
+	rot_s (float): relative angle between the closest silver token and the robot (-1 if no silver token is detected).
+	
+	Returns:
+	True: if either no silver is found by the find_silver_token() function or a gold token is closer to the robot than a silver one is.
+	False: if the detected silver token is closer to the robot than any of the golden ones are.
+	
 """
 def gold_token_list(d_s,rot_s):
     if ( d_s==-1):
@@ -119,8 +120,8 @@ def gold_token_list(d_s,rot_s):
 
 ###########################################
 """
-    TURNS
-    Function to make the robot turn away from a wall
+	TURNS
+	Function to make the robot turn away from a wall
     
     info:
     If the the robot detects a gold token throught the function find_gold_token(). The function turns() will check to the between the right and the left of the robot where the closest wall is.
@@ -146,8 +147,8 @@ def turns():
         
 #########################################
 """
-    GRAB_ROUTINE
-    Function to make the robot grab the approached silver token and preventing it to hit gold tokens while doing so.
+	GRAB_ROUTINE
+	Function to make the robot grab the approached silver token and preventing it to hit gold tokens while doing so.
     
     info:
     the robot will take the silver token and place it behind itself.
@@ -169,8 +170,8 @@ def grab_routine(r_l):
 
 ###########################################
 """
-    SILVER_ROUTINE
-    Function to make the robot approach the silver token getting as close as possible to it. 
+	SILVER_ROUTINE
+	Function to make the robot approach the silver token getting as close as possible to it. 
     
     info:
     the robot will adjust the angle to the angle of the token and drive to it until it will reach the assigned distance thrashold to grab it.
